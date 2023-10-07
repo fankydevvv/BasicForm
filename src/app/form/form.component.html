@@ -1,3 +1,25 @@
-<div>
+<div formGroupName="identify">
+  <form  [formGroup]="myForm" (ngSubmit)="onSubmit()" class="jasmine-excluded-no-display">
+  <h2>Form data</h2>
 
+  <label for="phoneNumber">Phone Number:<br>  </label>
+  <input id="phoneNumber"  type="text" formControlName="phoneNumber" placeholder="Your phone number is ....">
+    <br><br>
+
+  <label for="email">Email: <br>  </label>
+  <input id="email" type="text" formControlName="email" placeholder="Your email is ....">
+    <br><br>
+
+  <label>Tỉnh/ Thành phố:   </label>
+    <select id="city" (change)="changeCity($event)" formControlName="city">
+      <option value="{{data.city}"></option>
+    </select>
+    <br> <br>
+    <label>Quận/ Huyện:   </label>
+      <select id="district" formControlName="district">
+        <option *ngFor="let district of districts" [value]="district">{{ district }}</option>
+      </select>
+  <br><br>
+    <button type="submit" class ="btn btn-primary">Submit</button>
+  </form>
 </div>

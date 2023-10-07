@@ -1,0 +1,37 @@
+form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+/* Style the labels and input fields */
+label {
+  font-weight: bold;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Style the submit button */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Apply some spacing between elements */
+br {
+  margin-bottom: 10px;
+}
