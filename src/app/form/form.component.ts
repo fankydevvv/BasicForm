@@ -9,9 +9,15 @@ import {FormGroup, FormControl, NgForm, NgModelGroup, FormBuilder, Validators} f
 export class FormComponent implements OnInit{
   myForm: FormGroup | any;
 
-  vietnamData = [{
+  public vietnamData = [
+    {
+      city: 'Chọn thành phố',
+      district:['Chọn quận/ huyện']
+    },
+    {
     city: 'Hà Nội',
-    district: ['Quận Ba Đình',
+    district: [
+      'Quận Ba Đình',
       'Quận Bắc Từ Liêm',
       'Quận Cầu Giấy',
       'Quận Đống Đa' ,
@@ -21,7 +27,7 @@ export class FormComponent implements OnInit{
       'Quận Hoàng Mai' ,
       'Quận Long Biên' ,
       'Quận Nam Từ Liêm' ,
-      'Quận Tây Hồ' ,
+      'Quận Tây Hồ',
       'Quận Thanh Xuân' ,
       'Thị xã Sơn Tây',
       'Huyện Ba Vì' ,
@@ -61,22 +67,23 @@ export class FormComponent implements OnInit{
     },
     {
       city: 'Hải Phòng',
-      district: [ 'Hồng Bàng',
+      district: [
+        'Hồng Bàng',
         'Lê Chân',
         'Ngô Quyền',
         'An Dương',
-      'An Lão' ,
-      'Cát Bà' ,
-      'Cát Hải' ,
-      'Hải An',
-      ' Kiến Thụy',
-      'Thủy Nguyên',
-      'Tiên Lãng',
-      'Vĩnh Bảo',
+        'An Lão' ,
+        'Cát Bà' ,
+        'Cát Hải' ,
+        'Hải An',
+        ' Kiến Thụy',
+        'Thủy Nguyên',
+        'Tiên Lãng',
+        'Vĩnh Bảo',
       ],
     }
   ];
-  districts: string[] = [''];
+  districts: string[] = [];
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -88,29 +95,36 @@ export class FormComponent implements OnInit{
     });
   }
 
-  changeCity(event: Event) {
-    const selectedCity = (event.target as HTMLSelectElement).value;
-    const selectedCityData = this.vietnamData.find(data => data.city === selectedCity);
-    this.districts = selectedCityData ? selectedCityData.district : [];
-    this.myForm.get('district').reset(); // Reset the district field when city changes
+  changeCity(event: any) {
+    const city = event.target.value;
+    // console.log('event', city);
+    // const search = this.vietnamData.filter((data) =>data.city === city);
+    // console.log('search', search);
+    // if(search  && search.length> 0) {
+    //   this.districts = this.district;
+    // }
+    if(!city) {
+      return;
+    }
+    this.districts = this.vietnamData.find(data => data.city === city)?.district || [];
   }
 
   onSubmit() {
     // Handle form submission logic here
     console.log(this.myForm.value);
   }
-  get phoneNumber() {
-    return this.myForm.get('phoneNumber');
-  }
-  get email() {
-    return this.myForm.get('email');
-  }
-  get city() {
-    return this.myForm.get('city');
-  }
-  get district() {
-    return this.myForm.get('district');
-  }
+  // get phoneNumber() {
+  //   return this.myForm.get('phoneNumber');
+  // }
+  // get email() {
+  //   return this.myForm.get('email');
+  // }
+  // get city() {
+  //   return this.myForm.get('city');
+  // }
+  // get district() {
+  //   return this.myForm.get('district');
+  // }
 }
 
 

@@ -8,24 +8,18 @@
 
     <label for="email">Email:</label>
     <input id="email" type="email" formControlName="email" placeholder="Your email is ...." required>
-    <div *ngIf="email.invalid && (email.dirty || email.touched)">
-      <span *ngIf="email.errors?.required">Email is required.</span>
-      <span *ngIf="email.errors?.email">Invalid email format.</span>
-    </div>
     <br><br>
 
   <label>Tỉnh/ Thành phố:  </label>
     <select id="city" (change)="changeCity($event)" formControlName="city">
-      <option >-- Select -- </option>
       <option *ngFor="let data of vietnamData" value="{{data.city}}">{{data.city}}</option>
     </select>
     <br> <br>
     <label>Quận/ Huyện:   </label>
       <select id="district" formControlName="district">
-        <option >-- Select -- </option>
-        <option *ngFor="let data of vietnamData" [value]="districts">{{ data.district }}</option>
+        <option *ngFor="let district of districts" [value]="district">{{ district }}</option>
       </select>
   <br><br>
-    <button [disabled]="myForm.form.invalid" type="submit" class ="btn btn-primary">Submit</button>
+    <button type="submit" class ="btn btn-primary">Submit</button>
   </form>
 </div>
